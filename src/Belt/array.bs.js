@@ -27,5 +27,16 @@ catch (raw_exn){
   }
 }
 
+var x = letters[32];
+
+console.log(x);
+
+console.log(false);
+
+var x$1 = letters[0];
+
+console.log(Caml_obj.equal(x$1, "a"));
+
 exports.letters = letters;
+exports.x = x$1;
 /*  Not a pure module */
