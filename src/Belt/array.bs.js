@@ -11,9 +11,13 @@ var letters = [
   "c"
 ];
 
+console.log("-------- get -----------");
+
 console.log(Caml_obj.equal(Belt_Array.get(letters, 0), "a"));
 
 console.log(Caml_obj.equal(Belt_Array.get(letters, 0), "a"));
+
+console.log("-------- getExn -----------");
 
 try {
   console.log(Belt_Array.getExn(letters, 25));
@@ -27,6 +31,8 @@ catch (raw_exn){
   }
 }
 
+console.log("-------- getUnsafe -----------");
+
 var x = letters[32];
 
 console.log(x);
@@ -37,12 +43,98 @@ var x$1 = letters[0];
 
 console.log(Caml_obj.equal(x$1, "a"));
 
+console.log("-------- getUndefined -----------");
+
 var x$2 = letters[32];
 
 console.log(x$2 === undefined);
 
 console.log(letters[0]);
 
+console.log("-------- set -----------");
+
+Belt_Array.set(letters, 1, "z");
+
+console.log(letters);
+
+console.log("-------- setExn -----------");
+
+try {
+  Belt_Array.setExn(letters, 223, "z");
+}
+catch (raw_exn$1){
+  var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+  if (exn$1.RE_EXN_ID === "Assert_failure") {
+    console.log("exception thrown: index out of range");
+  } else {
+    throw exn$1;
+  }
+}
+
+console.log("-------- setUnsafe -----------");
+
+var zz = [
+  "a",
+  "b",
+  "c"
+];
+
+console.log((zz[20] = "tes", undefined));
+
+console.log(zz);
+
+console.log("-------- shuffleInPlace -----------");
+
+console.log(Belt_Array.shuffleInPlace(letters));
+
+console.log(letters);
+
+console.log("-------- shuffle -----------");
+
+var zz$1 = [
+  "a",
+  "b",
+  "c"
+];
+
+console.log(Belt_Array.shuffle(zz$1));
+
+console.log(zz$1);
+
+console.log("-------- reverseInPlace -----------");
+
+var zz$2 = [
+  "a",
+  "b",
+  "c"
+];
+
+console.log(Belt_Array.reverseInPlace(zz$2));
+
+console.log(zz$2);
+
+console.log("-------- reverse -----------");
+
+var zz$3 = [
+  "a",
+  "b",
+  "c"
+];
+
+console.log(Belt_Array.reverse(zz$3));
+
+console.log(zz$3);
+
+console.log("-------- makeUninitialized -----------");
+
+var arr = new Array(3);
+
+console.log(arr);
+
+console.log(Belt_Array.getExn(arr, 0) === undefined);
+
 exports.letters = letters;
 exports.x = x$2;
+exports.zz = zz$3;
+exports.arr = arr;
 /*  Not a pure module */
