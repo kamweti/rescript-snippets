@@ -30,8 +30,19 @@ try {
 let x = letters->Array.getUnsafe(32)
 Js.log(x) // undefined
 
-// wrap it in an option type to make it safe
+// make it safe: wrap it in an option type
 Js.log(Some(x) == None) // true
 
 let x = letters->Array.getUnsafe(0)
 Js.log(Some(x) == Some("a")) // true
+
+
+// -------- getUndefined -----------
+
+// does the same thing as getUnsafe only that 
+// returns Js.undefined if i is out of range
+
+let x = letters->Array.getUndefined(32)
+Js.log(x == Js.undefined) // true
+
+Js.log(letters->Array.getUndefined(0))

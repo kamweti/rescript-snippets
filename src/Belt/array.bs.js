@@ -37,6 +37,12 @@ var x$1 = letters[0];
 
 console.log(Caml_obj.equal(x$1, "a"));
 
+var x$2 = letters[32];
+
+console.log(x$2 === undefined);
+
+console.log(letters[0]);
+
 exports.letters = letters;
-exports.x = x$1;
+exports.x = x$2;
 /*  Not a pure module */
