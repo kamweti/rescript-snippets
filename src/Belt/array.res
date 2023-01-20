@@ -125,5 +125,27 @@ let arr: array<Js.undefined<string>> = Array.makeUninitialized(3)
 
 Js.log(arr) // [undefined, undefined, undefined]
 Js.log(arr->Array.getExn(0) == Js.undefined) // true
-Js.log(arr->Array.setExn(0, Js.undefined<"a">))
 Js.log(arr)
+
+// setting at index
+try {
+    let _ = arr->Array.setExn(0, Js.Undefined.fromOption(Some("a")))
+    Js.log(arr) // [ 'a', <2 empty items> ]
+} catch {
+| Assert_failure(_) => Js.log("exception thrown: index out of range")
+}
+
+Js.log("-------- makeUninitializedUnsafe -----------")
+
+// similar to makeUninitialized but:
+// - type of data is not enforced in annotation
+// - type is activated after usage, either by setting or comparison
+
+// be careful not to call getExn(0) == Js.undefined after initializing as this
+// implicitly activates type array<Js.undefined<'a>>
+
+let arr = Array.makeUninitializedUnsafe(3)
+Js.log(arr->Array.getExn(0)) // undefined
+arr->Array.setExn(0, "example")
+Js.log(arr) // [ 'example', <2 empty items> ]
+Js.log(arr->Array.getExn(1)) // undefined

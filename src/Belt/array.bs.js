@@ -3,6 +3,7 @@
 
 var Caml_obj = require("rescript/lib/js/caml_obj.js");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
+var Js_undefined = require("rescript/lib/js/js_undefined.js");
 var Caml_js_exceptions = require("rescript/lib/js/caml_js_exceptions.js");
 
 var letters = [
@@ -133,8 +134,35 @@ console.log(arr);
 
 console.log(Belt_Array.getExn(arr, 0) === undefined);
 
+console.log(arr);
+
+try {
+  Belt_Array.setExn(arr, 0, Js_undefined.fromOption("a"));
+  console.log(arr);
+}
+catch (raw_exn$2){
+  var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
+  if (exn$2.RE_EXN_ID === "Assert_failure") {
+    console.log("exception thrown: index out of range");
+  } else {
+    throw exn$2;
+  }
+}
+
+console.log("-------- makeUninitializedUnsafe -----------");
+
+var arr$1 = new Array(3);
+
+console.log(Belt_Array.getExn(arr$1, 0));
+
+Belt_Array.setExn(arr$1, 0, "example");
+
+console.log(arr$1);
+
+console.log(Belt_Array.getExn(arr$1, 1));
+
 exports.letters = letters;
 exports.x = x$2;
 exports.zz = zz$3;
-exports.arr = arr;
+exports.arr = arr$1;
 /*  Not a pure module */
