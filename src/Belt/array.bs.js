@@ -126,6 +126,20 @@ console.log(Belt_Array.reverse(zz$3));
 
 console.log(zz$3);
 
+console.log("-------- make -----------");
+
+console.log(Belt_Array.make(3, "heyo"));
+
+console.log("-------- makeBy -----------");
+
+console.log(Belt_Array.makeBy(5, (function (i) {
+            return i;
+          })));
+
+console.log(Belt_Array.makeBy(-5, (function (i) {
+            return i;
+          })));
+
 console.log("-------- makeUninitialized -----------");
 
 var arr = new Array(3);
@@ -161,8 +175,138 @@ console.log(arr$1);
 
 console.log(Belt_Array.getExn(arr$1, 1));
 
+console.log("-------- range -----------");
+
+console.log(Belt_Array.range(4, 10));
+
+console.log("-------- rangeBy -----------");
+
+console.log(Belt_Array.rangeBy(4, 10, 2));
+
+console.log("-------- map -----------");
+
+console.log(Belt_Array.map([
+          2,
+          4
+        ], (function (x) {
+            return Math.imul(x, x);
+          })));
+
+console.log("-------- mapWithIndex -----------");
+
+console.log(Belt_Array.mapWithIndex([
+          2,
+          4
+        ], (function (index, param) {
+            return index;
+          })));
+
+console.log("-------- reduce -----------");
+
+console.log(Belt_Array.reduce([
+          2,
+          5
+        ], 0, (function (accumulator, value) {
+            return accumulator + value | 0;
+          })));
+
+console.log("-------- reverse -----------");
+
+console.log(Belt_Array.reverse([
+          10,
+          11,
+          14,
+          12,
+          13
+        ]));
+
+console.log("-------- reverseInPlace -----------");
+
+var arr$2 = [
+  10,
+  11,
+  14
+];
+
+Belt_Array.reverseInPlace(arr$2);
+
+console.log(Caml_obj.equal(arr$2, [
+          14,
+          11,
+          10
+        ]));
+
+console.log("-------- shuffle -----------");
+
+console.log("-------- shuffleInPlace -----------");
+
+console.log("-------- sliceToEnd -----------");
+
+console.log(Belt_Array.sliceToEnd([
+          10,
+          11,
+          12,
+          13
+        ], 2));
+
+console.log("-------- some -----------");
+
+console.log(Belt_Array.some([
+          10,
+          11,
+          14
+        ], (function (x) {
+            return x === 17;
+          })));
+
+console.log("-------- truncateToLenghtUnsafe -----------");
+
+var arr$3 = [
+  "ant",
+  "bee",
+  "cat"
+];
+
+arr$3.length = 5;
+
+console.log(arr$3);
+
+arr$3.length = 2;
+
+console.log(Caml_obj.equal(arr$3, [
+          "ant",
+          "bee"
+        ]));
+
+console.log("-------- zip -----------");
+
+console.log(Belt_Array.zip([
+          "kitty",
+          "bus"
+        ], [
+          "cat",
+          "stop",
+          "ball"
+        ]));
+
+console.log("-------- unzip -----------");
+
+console.log([
+      [
+        "kitty",
+        "cat"
+      ],
+      [
+        "bus",
+        "stop"
+      ]
+    ]);
+
+var initial = 0;
+
 exports.letters = letters;
 exports.x = x$2;
 exports.zz = zz$3;
-exports.arr = arr$1;
+exports.initial = initial;
+exports.arr = arr$3;
 /*  Not a pure module */
